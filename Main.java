@@ -1,38 +1,36 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        boolean isEdekaOpen = true;
+        boolean isReweOpen = false;
 
-        String simpleString = new String("I study Basic Java!");
-        System.out.println(simpleString);
-        System.out.println(simpleString.length());
+        boolean canBuy = canBuy(isEdekaOpen, isReweOpen);
+        System.out.println("Я могу купить еду, это " + canBuy);
 
-        System.out.println(simpleString.charAt(18));
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите год: ");
+        int year = scanner.nextInt();
+        boolean isLeap = isLeapYear(year);
+        System.out.println("Год " + year + " " + (isLeap ? "високосный" : "не високосный"));
 
-        System.out.println(simpleString.contains("Java"));
+        System.out.print("Введите три целых числа: ");
+        int num1 = scanner.nextInt();
+        int num2 = scanner.nextInt();
+        int num3 = scanner.nextInt();
+        int max = findMax(num1, num2, num3);
+        System.out.println("Максимум из трех чисел: " + max);
+    }
 
-        System.out.println(simpleString.replace('a', '0'));
+    public static boolean canBuy(boolean isEdekaOpen, boolean isReweOpen) {
+        return isEdekaOpen || isReweOpen;
+    }
 
-        System.out.println(simpleString.toUpperCase());
+    public static boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
 
-        System.out.println(simpleString.toLowerCase());
-
-        System.out.println(simpleString.substring(0,13));
-
-        System.out.println(simpleString.substring(0,13) + "!");
-
-        /** int index = simpleString.indexOf("Java");
-         System.out.println(simpleString.substring(index)); **/
-
-        // int index = simpleString.indexOf("Java");
-        // System.out.println(simpleString.substring(index));
-
-
-
-        System.out.println("============Mathematical operations============");
-
-        int a = 10;
-        int b = 7;
-        int c = a + b;
-        System.out.println(c);
-
+    public static int findMax(int num1, int num2, int num3) {
+        return Math.max(num1, Math.max(num2, num3));
     }
 }
