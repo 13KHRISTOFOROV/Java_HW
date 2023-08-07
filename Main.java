@@ -1,36 +1,28 @@
-import java.util.Scanner;
+//Задачу понял лишь частично. Остальное додумал сам.
+
+package task_2;
 
 public class Main {
     public static void main(String[] args) {
-        boolean isEdekaOpen = true;
-        boolean isReweOpen = false;
+        Cars car1 = new Cars(2.4, "Volvo", 2006, "Sweden", "Stockholm");
+        Cars car2 = new Cars(4.6, "Tesla", 2022, "USA", "Long Beach");
+        Cars car3 = new Cars(3.4, "Mercedes", 2010, "Germany", "Bremen");
+        Cars car4 = new Cars(3.3, "BMW", 2010, "Germany", "Hamburg");
 
-        boolean canBuy = canBuy(isEdekaOpen, isReweOpen);
-        System.out.println("Я могу купить еду, это " + canBuy);
+        Cars[] car = {car1, car2, car3, car4};
+        StringBuilder query = new StringBuilder("SELECT * FROM cars WHERE");
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите год: ");
-        int year = scanner.nextInt();
-        boolean isLeap = isLeapYear(year);
-        System.out.println("Год " + year + " " + (isLeap ? "високосный" : "не високосный"));
+        for (Cars cars : car) {
 
-        System.out.print("Введите три целых числа: ");
-        int num1 = scanner.nextInt();
-        int num2 = scanner.nextInt();
-        int num3 = scanner.nextInt();
-        int max = findMax(num1, num2, num3);
-        System.out.println("Максимум из трех чисел: " + max);
-    }
+            query.setLength(24);
 
-    public static boolean canBuy(boolean isEdekaOpen, boolean isReweOpen) {
-        return isEdekaOpen || isReweOpen;
-    }
-
-    public static boolean isLeapYear(int year) {
-        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-    }
-
-    public static int findMax(int num1, int num2, int num3) {
-        return Math.max(num1, Math.max(num2, num3));
+            query.append(" model = '").append(cars.getModel()).append("' AND");
+            query.append(" price = ").append(cars.getPrice()).append(" AND");
+            query.append(" year = ").append(cars.getYear()).append(" AND");
+            query.append(" country = '").append(cars.getCountry()).append("' AND");
+            query.append(" city = '").append(cars.getCity()).append("'");
+            String finalQuery = query.toString();
+            System.out.println(finalQuery);
+        }
     }
 }
